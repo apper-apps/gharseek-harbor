@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react'
+import { getTranslation } from '@/services/translationService'
 
 export const useLanguage = () => {
   const [language, setLanguage] = useState('en')
@@ -20,6 +21,8 @@ export const useLanguage = () => {
     document.documentElement.setAttribute('lang', newLanguage)
   }
 
+  const t = (key) => getTranslation(key, language)
+
   const isUrdu = language === 'ur'
   const isRTL = direction === 'rtl'
 
@@ -28,6 +31,7 @@ export const useLanguage = () => {
     direction,
     isUrdu,
     isRTL,
-    changeLanguage
+    changeLanguage,
+    t
   }
 }

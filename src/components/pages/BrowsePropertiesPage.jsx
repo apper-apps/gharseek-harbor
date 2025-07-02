@@ -10,8 +10,10 @@ import Loading from '@/components/ui/Loading'
 import Error from '@/components/ui/Error'
 import Empty from '@/components/ui/Empty'
 import { propertyService } from '@/services/api/propertyService'
+import { useLanguage } from '@/hooks/useLanguage'
 
 const BrowsePropertiesPage = () => {
+  const { t } = useLanguage()
   const [searchParams, setSearchParams] = useSearchParams()
   const [properties, setProperties] = useState([])
   const [loading, setLoading] = useState(true)
@@ -25,8 +27,8 @@ const BrowsePropertiesPage = () => {
       setLoading(true)
       const data = await propertyService.search(filters)
       setProperties(data)
-    } catch (err) {
-      setError('Failed to load properties. Please try again.')
+} catch (err) {
+      setError(t('errors.failedToLoadProperties'))
       console.error('Error loading properties:', err)
     } finally {
       setLoading(false)
@@ -49,12 +51,12 @@ const BrowsePropertiesPage = () => {
     setSearchParams(params)
   }
 
-  const sortOptions = [
-    { value: 'newest', label: 'Newest First' },
-    { value: 'price-low', label: 'Price: Low to High' },
-    { value: 'price-high', label: 'Price: High to Low' },
-    { value: 'area-large', label: 'Largest Area' },
-    { value: 'featured', label: 'Featured First' }
+const sortOptions = [
+    { value: 'newest', label: t('browseProperties.newestFirst') },
+    { value: 'price-low', label: t('browseProperties.priceLowToHigh') },
+    { value: 'price-high', label: t('browseProperties.priceHighToLow') },
+    { value: 'area-large', label: t('browseProperties.largestArea') },
+    { value: 'featured', label: t('browseProperties.featuredFirst') }
   ]
 
   const handleSort = (sortValue) => {
@@ -90,11 +92,11 @@ const BrowsePropertiesPage = () => {
         {/* Header */}
         <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-8">
           <div>
-            <h1 className="font-display font-bold text-2xl md:text-3xl text-gray-900">
-              Browse Properties
+<h1 className="font-display font-bold text-2xl md:text-3xl text-gray-900">
+              {t('browseProperties.title')}
             </h1>
             <p className="text-gray-600 mt-1">
-              {loading ? 'Loading...' : `${properties.length} properties found`}
+{loading ? t('common.loading') : `${properties.length} ${t('browseProperties.propertiesFound')}`}
             </p>
           </div>
 
@@ -137,11 +139,11 @@ const BrowsePropertiesPage = () => {
         {loading && <Loading />}
         {error && <Error message={error} onRetry={() => loadProperties()} />}
         {!loading && !error && properties.length === 0 && (
-          <Empty 
-            message="No properties found matching your criteria"
+<Empty 
+            message={t('browseProperties.noPropertiesFound')}
             action={
               <Button onClick={() => handleSearch({})}>
-                Clear Filters
+                {t('browseProperties.clearFilters')}
               </Button>
             }
           />
@@ -176,8 +178,8 @@ const BrowsePropertiesPage = () => {
         {/* Load More */}
         {!loading && properties.length >= 12 && (
           <div className="text-center mt-12">
-            <Button variant="outline" size="lg">
-              Load More Properties
+<Button variant="outline" size="lg">
+              {t('browseProperties.loadMoreProperties')}
             </Button>
           </div>
         )}

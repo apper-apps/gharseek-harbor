@@ -1,31 +1,13 @@
-import { motion } from 'framer-motion'
-import { Link } from 'react-router-dom'
-import ApperIcon from '@/components/ApperIcon'
-import Badge from '@/components/atoms/Badge'
-import Button from '@/components/atoms/Button'
-
+import { motion } from "framer-motion";
+import { Link } from "react-router-dom";
+import { useLanguage } from "@/hooks/useLanguage";
+import React from "react";
+import { formatArea, formatPrice } from "@/utils/formatters";
+import ApperIcon from "@/components/ApperIcon";
+import Badge from "@/components/atoms/Badge";
+import Button from "@/components/atoms/Button";
 const PropertyCard = ({ property, className = '' }) => {
-  const formatPrice = (price) => {
-    return new Intl.NumberFormat('en-PK', {
-      style: 'currency',
-      currency: 'PKR',
-      minimumFractionDigits: 0,
-      maximumFractionDigits: 0
-    }).format(price)
-  }
-
-  const getAreaText = (size, unit) => {
-    switch(unit) {
-      case 'marla':
-        return `${size} Marla`
-      case 'kanal':
-        return `${size} Kanal`
-      case 'sqft':
-        return `${size} Sq Ft`
-      default:
-        return `${size} ${unit}`
-    }
-  }
+  const { t, language } = useLanguage()
 
   return (
     <motion.div
@@ -40,15 +22,15 @@ const PropertyCard = ({ property, className = '' }) => {
           alt={property.title}
           className="w-full h-48 object-cover"
         />
-        <div className="absolute top-3 left-3 flex gap-2">
+<div className="absolute top-3 left-3 flex gap-2">
           {property.featured && (
             <Badge variant="featured" icon="Star">
-              Featured
+              {t('common.featured')}
             </Badge>
           )}
           {property.verified && (
             <Badge variant="verified" icon="CheckCircle">
-              Verified
+              {t('common.verified')}
             </Badge>
           )}
         </div>
@@ -67,11 +49,11 @@ const PropertyCard = ({ property, className = '' }) => {
           <h3 className="font-display font-semibold text-lg text-gray-900 line-clamp-2">
             {property.title}
           </h3>
-          <div className="text-right ml-3 flex-shrink-0">
+<div className="text-right ml-3 flex-shrink-0">
             <div className="text-xl font-bold text-primary-600">
-              {formatPrice(property.price)}
+              {formatPrice(property.price, 'PKR', language)}
             </div>
-            <div className="text-sm text-gray-500">per month</div>
+            <div className="text-sm text-gray-500">{t('property.perMonth')}</div>
           </div>
         </div>
         
@@ -81,35 +63,35 @@ const PropertyCard = ({ property, className = '' }) => {
         </div>
         
         <div className="flex items-center gap-4 text-sm text-gray-600 mb-4">
-          {property.bedrooms && (
+{property.bedrooms && (
             <div className="flex items-center">
               <ApperIcon name="Bed" size={16} className="mr-1 text-primary-500" />
-              {property.bedrooms} Bed
+              {property.bedrooms} {property.bedrooms === 1 ? t('property.bedroom') : t('property.bedrooms')}
             </div>
           )}
           {property.bathrooms && (
             <div className="flex items-center">
               <ApperIcon name="Bath" size={16} className="mr-1 text-primary-500" />
-              {property.bathrooms} Bath
+              {property.bathrooms} {property.bathrooms === 1 ? t('property.bathroom') : t('property.bathrooms')}
             </div>
           )}
           {property.areaSize && (
             <div className="flex items-center">
               <ApperIcon name="Square" size={16} className="mr-1 text-primary-500" />
-              {getAreaText(property.areaSize, property.areaUnit)}
+              {formatArea(property.areaSize, property.areaUnit, language)}
             </div>
           )}
         </div>
         
         <div className="flex gap-2 mb-4">
-          <Button
+<Button
             variant="primary"
             size="sm"
             className="flex-1"
             onClick={() => window.location.href = `tel:${property.agent?.phone}`}
           >
             <ApperIcon name="Phone" size={16} className="mr-2" />
-            Call
+            {t('common.callNow')}
           </Button>
           <Button
             variant="whatsapp"
@@ -118,13 +100,13 @@ const PropertyCard = ({ property, className = '' }) => {
             onClick={() => window.open(`https://wa.me/${property.agent?.whatsapp}`, '_blank')}
           >
             <ApperIcon name="MessageCircle" size={16} className="mr-2" />
-            WhatsApp
+            {t('common.whatsapp')}
           </Button>
         </div>
         
-        <Link to={`/property/${property.Id}`}>
+<Link to={`/property/${property.id}`}>
           <Button variant="outline" size="sm" className="w-full">
-            View Details
+            {t('common.viewDetails')}
           </Button>
         </Link>
       </div>

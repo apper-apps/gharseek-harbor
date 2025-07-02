@@ -8,8 +8,10 @@ import Loading from '@/components/ui/Loading'
 import Error from '@/components/ui/Error'
 import Empty from '@/components/ui/Empty'
 import { propertyService } from '@/services/api/propertyService'
+import { useLanguage } from '@/hooks/useLanguage'
 
 const FeaturedProperties = () => {
+  const { t } = useLanguage()
   const [properties, setProperties] = useState([])
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState('')
@@ -21,7 +23,7 @@ const FeaturedProperties = () => {
       const data = await propertyService.getFeatured()
       setProperties(data)
     } catch (err) {
-      setError('Failed to load featured properties. Please try again.')
+      setError(t('errors.failedToLoadProperties'))
       console.error('Error loading featured properties:', err)
     } finally {
       setLoading(false)
@@ -32,9 +34,9 @@ const FeaturedProperties = () => {
     loadFeaturedProperties()
   }, [])
 
-  if (loading) return <Loading />
+if (loading) return <Loading />
   if (error) return <Error message={error} onRetry={loadFeaturedProperties} />
-  if (properties.length === 0) return <Empty message="No featured properties available" />
+  if (properties.length === 0) return <Empty message={t('errors.noPropertiesAvailable')} />
 
   return (
     <section className="py-16 bg-white">
@@ -44,11 +46,11 @@ const FeaturedProperties = () => {
           animate={{ opacity: 1, y: 0 }}
           className="text-center mb-12"
         >
-          <h2 className="font-display font-bold text-3xl md:text-4xl text-gray-900 mb-4">
-            Featured Properties
+<h2 className="font-display font-bold text-3xl md:text-4xl text-gray-900 mb-4">
+            {t('featured.title')}
           </h2>
           <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-            Handpicked premium properties from verified agents across Pakistan's major cities
+            {t('featured.description')}
           </p>
         </motion.div>
 
@@ -72,9 +74,9 @@ const FeaturedProperties = () => {
           className="text-center"
         >
           <Link to="/properties">
-            <Button variant="primary" size="lg" className="flex items-center gap-2">
+<Button variant="primary" size="lg" className="flex items-center gap-2">
               <ApperIcon name="Search" size={20} />
-              View All Properties
+              {t('featured.viewAll')}
             </Button>
           </Link>
         </motion.div>

@@ -1,36 +1,37 @@
-import { useState, useEffect } from 'react'
-import { motion } from 'framer-motion'
-import { Link } from 'react-router-dom'
-import ApperIcon from '@/components/ApperIcon'
-import Badge from '@/components/atoms/Badge'
-import Loading from '@/components/ui/Loading'
-import Error from '@/components/ui/Error'
-import Empty from '@/components/ui/Empty'
-import { blogService } from '@/services/api/blogService'
+import React, { useEffect, useState } from "react";
+import { motion } from "framer-motion";
+import { Link } from "react-router-dom";
+import { useLanguage } from "@/hooks/useLanguage";
+import ApperIcon from "@/components/ApperIcon";
+import Badge from "@/components/atoms/Badge";
+import Error from "@/components/ui/Error";
+import Empty from "@/components/ui/Empty";
+import Loading from "@/components/ui/Loading";
+import { blogService } from "@/services/api/blogService";
 
 const BlogPage = () => {
+  const { t } = useLanguage()
   const [posts, setPosts] = useState([])
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState('')
   const [selectedCategory, setSelectedCategory] = useState('all')
 
-  const categories = [
-    { value: 'all', label: 'All Posts' },
-    { value: 'tips', label: 'Property Tips' },
-    { value: 'laws', label: 'Rental Laws' },
-    { value: 'reviews', label: 'Area Reviews' },
-    { value: 'guides', label: 'Moving Guides' },
-    { value: 'market', label: 'Market Insights' }
+const categories = [
+    { value: 'all', label: t('blog.allPosts') },
+    { value: 'tips', label: t('blog.propertyTips') },
+    { value: 'laws', label: t('blog.rentalLaws') },
+    { value: 'reviews', label: t('blog.areaReviews') },
+    { value: 'guides', label: t('blog.movingGuides') },
+    { value: 'market', label: t('blog.marketInsights') }
   ]
-
   const loadPosts = async () => {
     try {
       setError('')
       setLoading(true)
       const data = await blogService.getAll()
       setPosts(data)
-    } catch (err) {
-      setError('Failed to load blog posts. Please try again.')
+} catch (err) {
+      setError(t('errors.failedToLoadBlogPosts'))
       console.error('Error loading blog posts:', err)
     } finally {
       setLoading(false)
@@ -57,11 +58,11 @@ const BlogPage = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
           >
-            <h1 className="font-display font-bold text-4xl md:text-5xl text-gray-900 mb-4">
-              GharSeek Blog
+<h1 className="font-display font-bold text-4xl md:text-5xl text-gray-900 mb-4">
+              {t('blog.title')}
             </h1>
-            <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-              Your guide to Pakistan's real estate market with tips, insights, and expert advice
+<p className="text-xl text-gray-600 max-w-2xl mx-auto">
+              {t('blog.description')}
             </p>
           </motion.div>
         </div>
@@ -90,8 +91,8 @@ const BlogPage = () => {
         </motion.div>
 
         {/* Blog Posts */}
-        {filteredPosts.length === 0 ? (
-          <Empty message="No blog posts found in this category" />
+{filteredPosts.length === 0 ? (
+          <Empty message={t('blog.noBlogPosts')} />
         ) : (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {filteredPosts.map((post, index) => (
@@ -114,13 +115,12 @@ const BlogPage = () => {
                 </div>
                 
                 <div className="p-6">
-                  <div className="flex items-center text-sm text-gray-500 mb-3">
+<div className="flex items-center text-sm text-gray-500 mb-3">
                     <ApperIcon name="Calendar" size={16} className="mr-2" />
                     {post.publishDate}
                     <ApperIcon name="Clock" size={16} className="ml-4 mr-2" />
-                    {post.readTime} min read
+                    {post.readTime} {t('blog.minRead')}
                   </div>
-                  
                   <h2 className="font-display font-semibold text-xl text-gray-900 mb-3 line-clamp-2">
                     {post.title}
                   </h2>
@@ -137,12 +137,11 @@ const BlogPage = () => {
                       <span className="text-sm text-gray-700">{post.author}</span>
                     </div>
                     
-                    <Link
+<Link
                       to={`/blog/${post.Id}`}
                       className="text-primary-600 hover:text-primary-700 text-sm font-medium flex items-center"
                     >
-                      Read More
-                      <ApperIcon name="ArrowRight" size={14} className="ml-1" />
+                      {t('blog.readMore')}
                     </Link>
                   </div>
                 </div>
@@ -158,20 +157,19 @@ const BlogPage = () => {
           transition={{ delay: 0.6 }}
           className="mt-16 bg-gradient-to-r from-primary-500 to-secondary-500 rounded-2xl p-8 text-center text-white"
         >
-          <h3 className="font-display font-bold text-2xl mb-4">
-            Stay Updated with Real Estate Insights
+<h3 className="font-display font-bold text-2xl mb-4">
+            {t('blog.stayUpdated')}
           </h3>
-          <p className="text-primary-100 mb-6 max-w-2xl mx-auto">
-            Subscribe to our newsletter for the latest property tips, market analysis, and rental advice
+<p className="text-primary-100 mb-6 max-w-2xl mx-auto">
+            {t('blog.subscribeDescription')}
           </p>
           <div className="flex flex-col sm:flex-row gap-4 max-w-md mx-auto">
-            <input
-              type="email"
-              placeholder="Enter your email"
+<input
+              placeholder={t('footer.emailPlaceholder')}
               className="flex-1 px-4 py-3 rounded-lg text-gray-900 focus:outline-none focus:ring-2 focus:ring-white"
             />
-            <button className="bg-accent-500 hover:bg-accent-600 text-white px-6 py-3 rounded-lg font-medium transition-colors duration-200">
-              Subscribe
+<button className="bg-accent-500 hover:bg-accent-600 text-white px-6 py-3 rounded-lg font-medium transition-colors duration-200">
+              {t('footer.subscribe')}
             </button>
           </div>
         </motion.div>

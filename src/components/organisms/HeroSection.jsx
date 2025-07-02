@@ -2,8 +2,10 @@ import { motion } from 'framer-motion'
 import SearchBar from '@/components/molecules/SearchBar'
 import Button from '@/components/atoms/Button'
 import ApperIcon from '@/components/ApperIcon'
-
+import { useLanguage } from '@/hooks/useLanguage'
 const HeroSection = ({ onSearch }) => {
+  const { t } = useLanguage()
+  
   return (
     <section className="relative bg-gradient-to-br from-primary-50 via-white to-secondary-50 py-20 overflow-hidden">
       {/* Background Pattern */}
@@ -16,17 +18,16 @@ const HeroSection = ({ onSearch }) => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
           >
-            <h1 className="font-display font-bold text-4xl md:text-6xl text-gray-900 mb-6">
-              Find Your Perfect{' '}
+<h1 className="font-display font-bold text-4xl md:text-6xl text-gray-900 mb-6">
+              {t('hero.title')}{' '}
               <span className="bg-gradient-to-r from-primary-600 to-secondary-600 bg-clip-text text-transparent">
-                Rental Space
+                {t('hero.titleHighlight')}
               </span>
               <br />
-              in Pakistan
+              {t('hero.titleLocation')}
             </h1>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto mb-8 leading-relaxed">
-              Discover thousands of verified rental properties across Pakistan's major cities. 
-              From cozy apartments to spacious houses, find your ideal home with trusted agents.
+              {t('hero.description')}
             </p>
           </motion.div>
 
@@ -36,17 +37,17 @@ const HeroSection = ({ onSearch }) => {
             transition={{ duration: 0.6, delay: 0.2 }}
             className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-12"
           >
-            <div className="flex items-center bg-white rounded-full px-6 py-3 shadow-lg">
+<div className="flex items-center bg-white rounded-full px-6 py-3 shadow-lg">
               <ApperIcon name="Shield" size={20} className="text-green-500 mr-2" />
-              <span className="text-sm font-medium text-gray-700">Verified Properties</span>
+              <span className="text-sm font-medium text-gray-700">{t('hero.verifiedProperties')}</span>
             </div>
             <div className="flex items-center bg-white rounded-full px-6 py-3 shadow-lg">
               <ApperIcon name="Users" size={20} className="text-blue-500 mr-2" />
-              <span className="text-sm font-medium text-gray-700">Trusted Agents</span>
+              <span className="text-sm font-medium text-gray-700">{t('hero.trustedAgents')}</span>
             </div>
             <div className="flex items-center bg-white rounded-full px-6 py-3 shadow-lg">
               <ApperIcon name="MessageCircle" size={20} className="text-green-600 mr-2" />
-              <span className="text-sm font-medium text-gray-700">WhatsApp Support</span>
+              <span className="text-sm font-medium text-gray-700">{t('hero.whatsappSupport')}</span>
             </div>
           </motion.div>
         </div>
@@ -66,21 +67,21 @@ const HeroSection = ({ onSearch }) => {
           transition={{ duration: 0.6, delay: 0.6 }}
           className="flex flex-wrap items-center justify-center gap-4 mt-8"
         >
-          <Button variant="ghost" className="flex items-center gap-2">
+<Button variant="ghost" className="flex items-center gap-2">
             <ApperIcon name="Home" size={16} />
-            Houses for Rent
+            {t('hero.housesForRent')}
           </Button>
           <Button variant="ghost" className="flex items-center gap-2">
             <ApperIcon name="Building" size={16} />
-            Apartments for Rent
+            {t('hero.apartmentsForRent')}
           </Button>
           <Button variant="ghost" className="flex items-center gap-2">
             <ApperIcon name="Briefcase" size={16} />
-            Office Spaces
+            {t('hero.officeSpaces')}
           </Button>
           <Button variant="ghost" className="flex items-center gap-2">
             <ApperIcon name="Square" size={16} />
-            Plots for Sale
+            {t('hero.plotsForSale')}
           </Button>
         </motion.div>
       </div>

@@ -1,9 +1,10 @@
 import { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import ApperIcon from '@/components/ApperIcon'
+import { useLanguage } from '@/hooks/useLanguage'
 
 const LanguageSwitcher = ({ className = '' }) => {
-  const [currentLanguage, setCurrentLanguage] = useState('en')
+  const { language, changeLanguage } = useLanguage()
   const [isOpen, setIsOpen] = useState(false)
 
   const languages = [
@@ -11,13 +12,11 @@ const LanguageSwitcher = ({ className = '' }) => {
     { code: 'ur', name: 'اردو', flag: '🇵🇰' }
   ]
 
-  const currentLang = languages.find(lang => lang.code === currentLanguage)
+  const currentLang = languages.find(lang => lang.code === language)
 
   const handleLanguageChange = (langCode) => {
-    setCurrentLanguage(langCode)
+    changeLanguage(langCode)
     setIsOpen(false)
-    // Here you would implement actual language switching logic
-    document.documentElement.setAttribute('dir', langCode === 'ur' ? 'rtl' : 'ltr')
   }
 
   return (
@@ -44,16 +43,16 @@ const LanguageSwitcher = ({ className = '' }) => {
             exit={{ opacity: 0, y: -10 }}
             className="absolute top-full mt-2 right-0 bg-white border border-gray-200 rounded-lg shadow-lg py-1 min-w-[120px] z-50"
           >
-            {languages.map((language) => (
+            {languages.map((lang) => (
               <motion.button
-                key={language.code}
+                key={lang.code}
                 whileHover={{ backgroundColor: '#f3f4f6' }}
-                onClick={() => handleLanguageChange(language.code)}
+                onClick={() => handleLanguageChange(lang.code)}
                 className="w-full flex items-center gap-2 px-3 py-2 text-left hover:bg-gray-50 transition-colors duration-200"
               >
-                <span className="text-lg">{language.flag}</span>
-                <span className="text-sm">{language.name}</span>
-                {currentLanguage === language.code && (
+                <span className="text-lg">{lang.flag}</span>
+                <span className="text-sm">{lang.name}</span>
+                {language === lang.code && (
                   <ApperIcon name="Check" size={14} className="text-primary-500 ml-auto" />
                 )}
               </motion.button>

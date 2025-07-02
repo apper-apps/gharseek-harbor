@@ -5,8 +5,9 @@ import Input from '@/components/atoms/Input'
 import Select from '@/components/atoms/Select'
 import Button from '@/components/atoms/Button'
 import ApperIcon from '@/components/ApperIcon'
-
+import { useLanguage } from '@/hooks/useLanguage'
 const ContactPage = () => {
+  const { t } = useLanguage()
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -15,13 +16,13 @@ const ContactPage = () => {
     message: ''
   })
 
-  const subjectOptions = [
-    { value: 'general', label: 'General Inquiry' },
-    { value: 'property', label: 'Property Listing' },
-    { value: 'agent', label: 'Agent Support' },
-    { value: 'technical', label: 'Technical Issue' },
-    { value: 'complaint', label: 'Complaint' },
-    { value: 'suggestion', label: 'Suggestion' }
+const subjectOptions = [
+    { value: 'general', label: t('contact.generalInquiry') },
+    { value: 'property', label: t('contact.propertyListing') },
+    { value: 'agent', label: t('contact.agentSupport') },
+    { value: 'technical', label: t('contact.technicalIssue') },
+    { value: 'complaint', label: t('contact.complaint') },
+    { value: 'suggestion', label: t('contact.suggestion') }
   ]
 
   const handleInputChange = (field, value) => {
@@ -30,8 +31,8 @@ const ContactPage = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault()
-    if (formData.name && formData.email && formData.message) {
-      toast.success('Message sent successfully! We will get back to you soon.')
+if (formData.name && formData.email && formData.message) {
+      toast.success(t('contact.sendMessageSuccess'))
       setFormData({
         name: '',
         email: '',
@@ -39,31 +40,31 @@ const ContactPage = () => {
         subject: '',
         message: ''
       })
-    } else {
-      toast.error('Please fill in all required fields')
+} else {
+      toast.error(t('agentLogin.fillAllFields'))
     }
   }
 
-  const contactInfo = [
+const contactInfo = [
     {
       icon: 'MapPin',
-      title: 'Office Address',
+      title: t('contact.officeAddress'),
       details: ['123 Business Center', 'Gulberg III, Lahore', 'Punjab, Pakistan']
     },
     {
       icon: 'Phone',
-      title: 'Phone Numbers',
-      details: ['+92 42 1234 5678', '+92 300 1234567', 'Mon-Sat: 9AM-7PM']
+      title: t('contact.phoneNumbers'),
+      details: ['+92 42 1234 5678', '+92 300 1234567', t('contact.monSatHours')]
     },
     {
       icon: 'Mail',
-      title: 'Email Addresses',
+      title: t('contact.emailAddresses'),
       details: ['info@gharseek.com', 'support@gharseek.com', 'agent@gharseek.com']
     },
     {
       icon: 'MessageCircle',
-      title: 'WhatsApp Support',
-      details: ['+92 300 1234567', 'Available 24/7', 'Quick responses']
+      title: t('contact.whatsappSupport'),
+      details: ['+92 300 1234567', t('contact.available24_7'), t('contact.quickResponses')]
     }
   ]
 
@@ -76,11 +77,11 @@ const ContactPage = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
           >
-            <h1 className="font-display font-bold text-4xl md:text-5xl text-gray-900 mb-4">
-              Get in Touch
+<h1 className="font-display font-bold text-4xl md:text-5xl text-gray-900 mb-4">
+              {t('contact.title')}
             </h1>
-            <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-              We're here to help you find your perfect property or answer any questions
+<p className="text-xl text-gray-600 max-w-2xl mx-auto">
+              {t('contact.description')}
             </p>
           </motion.div>
         </div>
@@ -94,24 +95,24 @@ const ContactPage = () => {
             animate={{ opacity: 1, x: 0 }}
             className="card p-8"
           >
-            <h2 className="font-display font-semibold text-2xl text-gray-900 mb-6">
-              Send us a Message
+<h2 className="font-display font-semibold text-2xl text-gray-900 mb-6">
+              {t('contact.sendMessage')}
             </h2>
             
             <form onSubmit={handleSubmit} className="space-y-6">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <Input
-                  label="Full Name"
-                  placeholder="Enter your name"
+<Input
+                  label={t('forms.fullName')}
+                  placeholder={t('contact.enterYourName')}
                   value={formData.name}
                   onChange={(e) => handleInputChange('name', e.target.value)}
                   required
                 />
                 
-                <Input
-                  label="Email Address"
+<Input
+                  label={t('forms.email')}
                   type="email"
-                  placeholder="Enter your email"
+                  placeholder={t('contact.enterYourEmail')}
                   value={formData.email}
                   onChange={(e) => handleInputChange('email', e.target.value)}
                   required
@@ -119,15 +120,15 @@ const ContactPage = () => {
               </div>
 
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <Input
-                  label="Phone Number"
+<Input
+                  label={t('forms.phoneNumber')}
                   placeholder="+92 300 1234567"
                   value={formData.phone}
                   onChange={(e) => handleInputChange('phone', e.target.value)}
                 />
                 
-                <Select
-                  label="Subject"
+<Select
+                  label={t('forms.subject')}
                   options={subjectOptions}
                   value={formData.subject}
                   onChange={(e) => handleInputChange('subject', e.target.value)}
@@ -135,21 +136,21 @@ const ContactPage = () => {
               </div>
 
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">
-                  Message <span className="text-red-500">*</span>
+<label className="block text-sm font-medium text-gray-700 mb-2">
+                  {t('forms.message')} <span className="text-red-500">*</span>
                 </label>
                 <textarea
                   value={formData.message}
                   onChange={(e) => handleInputChange('message', e.target.value)}
                   rows={6}
                   className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500"
-                  placeholder="Tell us how we can help you..."
+placeholder={t('contact.tellUsHow')}
                   required
                 />
               </div>
 
-              <Button type="submit" variant="primary" className="w-full">
-                Send Message
+<Button type="submit" variant="primary" className="w-full">
+                {t('contact.sendMessage')}
               </Button>
             </form>
           </motion.div>
@@ -161,12 +162,11 @@ const ContactPage = () => {
             className="space-y-8"
           >
             <div>
-              <h2 className="font-display font-semibold text-2xl text-gray-900 mb-6">
-                Contact Information
+<h2 className="font-display font-semibold text-2xl text-gray-900 mb-6">
+                {t('contact.contactInformation')}
               </h2>
-              <p className="text-gray-600 mb-8">
-                Reach out to us through any of the following channels. We're committed to 
-                providing excellent customer service and support.
+<p className="text-gray-600 mb-8">
+                {t('contact.contactDescription')}
               </p>
             </div>
 
@@ -205,21 +205,21 @@ const ContactPage = () => {
               transition={{ delay: 0.5 }}
               className="card p-6"
             >
-              <h3 className="font-semibold text-lg text-gray-900 mb-4">
-                Quick Actions
+<h3 className="font-semibold text-lg text-gray-900 mb-4">
+                {t('contact.quickActions')}
               </h3>
               <div className="space-y-3">
                 <Button variant="ghost" className="w-full justify-start">
-                  <ApperIcon name="FileText" size={18} className="mr-2" />
-                  Download Agent Guide
+<ApperIcon name="FileText" size={18} className="mr-2" />
+                  {t('contact.downloadAgentGuide')}
                 </Button>
                 <Button variant="ghost" className="w-full justify-start">
-                  <ApperIcon name="HelpCircle" size={18} className="mr-2" />
-                  FAQ & Help Center
+<ApperIcon name="HelpCircle" size={18} className="mr-2" />
+                  {t('contact.faqHelpCenter')}
                 </Button>
                 <Button variant="ghost" className="w-full justify-start">
-                  <ApperIcon name="Shield" size={18} className="mr-2" />
-                  Report an Issue
+<ApperIcon name="Shield" size={18} className="mr-2" />
+                  {t('contact.reportIssue')}
                 </Button>
               </div>
             </motion.div>
@@ -231,8 +231,8 @@ const ContactPage = () => {
               transition={{ delay: 0.6 }}
               className="text-center"
             >
-              <h3 className="font-semibold text-lg text-gray-900 mb-4">
-                Follow Us
+<h3 className="font-semibold text-lg text-gray-900 mb-4">
+                {t('contact.followUs')}
               </h3>
               <div className="flex justify-center space-x-4">
                 <a

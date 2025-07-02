@@ -1,5 +1,8 @@
-export const formatPrice = (price, currency = 'PKR') => {
-  return new Intl.NumberFormat('en-PK', {
+import { getTranslation } from '@/services/translationService'
+
+export const formatPrice = (price, currency = 'PKR', language = 'en') => {
+  const locale = language === 'ur' ? 'ur-PK' : 'en-PK'
+  return new Intl.NumberFormat(locale, {
     style: 'currency',
     currency: currency,
     minimumFractionDigits: 0,
@@ -7,22 +10,23 @@ export const formatPrice = (price, currency = 'PKR') => {
   }).format(price)
 }
 
-export const formatArea = (size, unit) => {
+export const formatArea = (size, unit, language = 'en') => {
   switch(unit) {
     case 'marla':
-      return `${size} Marla`
+      return `${size} ${getTranslation('property.marla', language)}`
     case 'kanal':
-      return `${size} Kanal`
+      return `${size} ${getTranslation('property.kanal', language)}`
     case 'sqft':
-      return `${size} Sq Ft`
+      return `${size} ${getTranslation('property.sqft', language)}`
     default:
       return `${size} ${unit}`
   }
 }
 
-export const formatDate = (dateString) => {
+export const formatDate = (dateString, language = 'en') => {
   const date = new Date(dateString)
-  return date.toLocaleDateString('en-PK', {
+  const locale = language === 'ur' ? 'ur-PK' : 'en-PK'
+  return date.toLocaleDateString(locale, {
     year: 'numeric',
     month: 'long',
     day: 'numeric'
@@ -61,27 +65,10 @@ export const capitalizeFirst = (str) => {
   return str.charAt(0).toUpperCase() + str.slice(1).toLowerCase()
 }
 
-export const getPropertyTypeLabel = (type) => {
-  const labels = {
-    house: 'House',
-    flat: 'Flat',
-    apartment: 'Apartment',
-    plot: 'Plot',
-    office: 'Office'
-  }
-  return labels[type] || capitalizeFirst(type)
+export const getPropertyTypeLabel = (type, language = 'en') => {
+  return getTranslation(`property.${type}`, language) || capitalizeFirst(type)
 }
 
-export const getCityLabel = (city) => {
-  const labels = {
-    lahore: 'Lahore',
-    karachi: 'Karachi',
-    islamabad: 'Islamabad',
-    multan: 'Multan',
-    faisalabad: 'Faisalabad',
-    rawalpindi: 'Rawalpindi',
-    peshawar: 'Peshawar',
-    quetta: 'Quetta'
-  }
-  return labels[city] || capitalizeFirst(city)
+export const getCityLabel = (city, language = 'en') => {
+  return getTranslation(`cityNames.${city}`, language) || capitalizeFirst(city)
 }

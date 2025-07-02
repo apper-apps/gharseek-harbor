@@ -1,12 +1,13 @@
-import { useState } from 'react'
-import { motion } from 'framer-motion'
-import { toast } from 'react-toastify'
-import Input from '@/components/atoms/Input'
-import Select from '@/components/atoms/Select'
-import Button from '@/components/atoms/Button'
-import ApperIcon from '@/components/ApperIcon'
-
+import React, { useState } from "react";
+import { motion } from "framer-motion";
+import { toast } from "react-toastify";
+import { useLanguage } from "@/hooks/useLanguage";
+import ApperIcon from "@/components/ApperIcon";
+import Select from "@/components/atoms/Select";
+import Input from "@/components/atoms/Input";
+import Button from "@/components/atoms/Button";
 const AddListingPage = () => {
+  const { t } = useLanguage()
   const [currentStep, setCurrentStep] = useState(1)
   const [formData, setFormData] = useState({
     title: '',
@@ -28,27 +29,27 @@ const AddListingPage = () => {
     contactEmail: ''
   })
 
-  const propertyTypes = [
-    { value: 'house', label: 'House' },
-    { value: 'flat', label: 'Flat' },
-    { value: 'apartment', label: 'Apartment' },
-    { value: 'plot', label: 'Plot' },
-    { value: 'office', label: 'Office' }
+const propertyTypes = [
+    { value: 'house', label: t('property.house') },
+    { value: 'flat', label: t('property.flat') },
+    { value: 'apartment', label: t('property.apartment') },
+    { value: 'plot', label: t('property.plot') },
+    { value: 'office', label: t('property.office') }
   ]
 
-  const cities = [
-    { value: 'lahore', label: 'Lahore' },
-    { value: 'karachi', label: 'Karachi' },
-    { value: 'islamabad', label: 'Islamabad' },
-    { value: 'multan', label: 'Multan' },
-    { value: 'faisalabad', label: 'Faisalabad' },
-    { value: 'rawalpindi', label: 'Rawalpindi' }
+const cities = [
+    { value: 'lahore', label: t('cityNames.lahore') },
+    { value: 'karachi', label: t('cityNames.karachi') },
+    { value: 'islamabad', label: t('cityNames.islamabad') },
+    { value: 'multan', label: t('cityNames.multan') },
+    { value: 'faisalabad', label: t('cityNames.faisalabad') },
+    { value: 'rawalpindi', label: t('cityNames.rawalpindi') }
   ]
 
-  const areaUnits = [
-    { value: 'sqft', label: 'Square Feet' },
-    { value: 'marla', label: 'Marla' },
-    { value: 'kanal', label: 'Kanal' }
+const areaUnits = [
+    { value: 'sqft', label: t('property.sqft') },
+    { value: 'marla', label: t('property.marla') },
+    { value: 'kanal', label: t('property.kanal') }
   ]
 
   const facilityOptions = [
@@ -57,11 +58,11 @@ const AddListingPage = () => {
     'Market Nearby', 'School Nearby', 'Hospital Nearby'
   ]
 
-  const steps = [
-    { number: 1, title: 'Basic Information', icon: 'Home' },
-    { number: 2, title: 'Property Details', icon: 'Info' },
-    { number: 3, title: 'Images & Description', icon: 'Image' },
-    { number: 4, title: 'Contact Information', icon: 'User' }
+const steps = [
+    { number: 1, title: t('addListing.step1'), icon: 'Home' },
+    { number: 2, title: t('addListing.step2'), icon: 'Info' },
+    { number: 3, title: t('addListing.step3'), icon: 'Image' },
+    { number: 4, title: t('addListing.step4'), icon: 'User' }
   ]
 
   const handleInputChange = (field, value) => {
@@ -112,8 +113,8 @@ const AddListingPage = () => {
   const nextStep = () => {
     if (validateStep(currentStep)) {
       setCurrentStep(prev => Math.min(prev + 1, 4))
-    } else {
-      toast.error('Please fill in all required fields')
+} else {
+      toast.error(t('addListing.fillRequiredFields'))
     }
   }
 
@@ -121,13 +122,13 @@ const AddListingPage = () => {
     setCurrentStep(prev => Math.max(prev - 1, 1))
   }
 
-  const handleSubmit = () => {
+const handleSubmit = () => {
     if (validateStep(4)) {
-      toast.success('Property listing submitted successfully!')
+      toast.success(t('addListing.submissionSuccess'))
       // In a real app, you would submit to an API
       console.log('Form submitted:', formData)
     } else {
-      toast.error('Please fill in all required fields')
+      toast.error(t('addListing.fillRequiredFields'))
     }
   }
 
@@ -136,11 +137,11 @@ const AddListingPage = () => {
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <div className="text-center mb-8">
-          <h1 className="font-display font-bold text-3xl text-gray-900 mb-2">
-            List Your Property
+<h1 className="font-display font-bold text-3xl text-gray-900 mb-2">
+            {t('addListing.title')}
           </h1>
           <p className="text-gray-600">
-            Add your rental property to reach thousands of potential tenants
+            {t('addListing.description')}
           </p>
         </div>
 
@@ -159,12 +160,12 @@ const AddListingPage = () => {
                   ) : (
                     <ApperIcon name={step.icon} size={20} />
                   )}
-                </div>
+</div>
                 <div className="ml-3 hidden sm:block">
                   <div className={`text-sm font-medium ${
-                    currentStep >= step.number ? 'text-primary-600' : 'text-gray-500'
+                    currentStep >= step.number ? 'text-primary-600' : 'text-gray-600'
                   }`}>
-                    Step {step.number}
+                    {t('common.step')} {step.number}
                   </div>
                   <div className="text-xs text-gray-500">{step.title}</div>
                 </div>
@@ -188,29 +189,29 @@ const AddListingPage = () => {
           {/* Step 1: Basic Information */}
           {currentStep === 1 && (
             <div className="space-y-6">
-              <h2 className="font-display font-semibold text-xl text-gray-900 mb-6">
-                Basic Information
+<h2 className="font-display font-semibold text-xl text-gray-900 mb-6">
+                {t('addListing.step1')}
               </h2>
               
-              <Input
-                label="Property Title"
-                placeholder="e.g., Beautiful 3 Bedroom House in DHA Lahore"
+<Input
+                label={t('forms.propertyTitle')}
+                placeholder={t('addListing.propertyTitlePlaceholder')}
                 value={formData.title}
                 onChange={(e) => handleInputChange('title', e.target.value)}
                 required
               />
 
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <Select
-                  label="Property Type"
+<Select
+                  label={t('property.propertyType')}
                   options={propertyTypes}
                   value={formData.type}
                   onChange={(e) => handleInputChange('type', e.target.value)}
                   required
                 />
 
-                <Select
-                  label="City"
+<Select
+                  label={t('property.city')}
                   options={cities}
                   value={formData.city}
                   onChange={(e) => handleInputChange('city', e.target.value)}
@@ -219,18 +220,18 @@ const AddListingPage = () => {
               </div>
 
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <Input
-                  label="Area/Location"
-                  placeholder="e.g., DHA Phase 5, Block B"
+<Input
+                  label={t('forms.areaLocation')}
+                  placeholder={t('addListing.areaLocationPlaceholder')}
                   value={formData.area}
                   onChange={(e) => handleInputChange('area', e.target.value)}
                   required
                 />
 
-                <Input
-                  label="Monthly Rent (PKR)"
+<Input
+                  label={t('forms.monthlyRent')}
                   type="number"
-                  placeholder="e.g., 50000"
+                  placeholder={t('addListing.monthlyRentPlaceholder')}
                   value={formData.price}
                   onChange={(e) => handleInputChange('price', e.target.value)}
                   required
@@ -242,21 +243,21 @@ const AddListingPage = () => {
           {/* Step 2: Property Details */}
           {currentStep === 2 && (
             <div className="space-y-6">
-              <h2 className="font-display font-semibold text-xl text-gray-900 mb-6">
-                Property Details
+<h2 className="font-display font-semibold text-xl text-gray-900 mb-6">
+                {t('addListing.step2')}
               </h2>
 
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <Input
-                  label="Bedrooms"
+<Input
+                  label={t('property.bedrooms')}
                   type="number"
                   placeholder="e.g., 3"
                   value={formData.bedrooms}
                   onChange={(e) => handleInputChange('bedrooms', e.target.value)}
                 />
 
-                <Input
-                  label="Bathrooms"
+<Input
+                  label={t('property.bathrooms')}
                   type="number"
                   placeholder="e.g., 2"
                   value={formData.bathrooms}
@@ -265,8 +266,8 @@ const AddListingPage = () => {
               </div>
 
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <Input
-                  label="Area Size"
+<Input
+                  label={t('forms.areaSize')}
                   type="number"
                   placeholder="e.g., 1200"
                   value={formData.areaSize}
@@ -274,8 +275,8 @@ const AddListingPage = () => {
                   required
                 />
 
-                <Select
-                  label="Area Unit"
+<Select
+                  label={t('property.areaUnit')}
                   options={areaUnits}
                   value={formData.areaUnit}
                   onChange={(e) => handleInputChange('areaUnit', e.target.value)}
@@ -291,14 +292,14 @@ const AddListingPage = () => {
                   onChange={(e) => handleInputChange('furnished', e.target.checked)}
                   className="h-4 w-4 text-primary-600 focus:ring-primary-500 border-gray-300 rounded"
                 />
-                <label htmlFor="furnished" className="ml-2 text-gray-700">
-                  Property is furnished
+<label htmlFor="furnished" className="ml-2 text-gray-700">
+                  {t('addListing.propertyIsFurnished')}
                 </label>
               </div>
 
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-3">
-                  Facilities & Features
+<label className="block text-sm font-medium text-gray-700 mb-3">
+                  {t('addListing.facilitiesFeatures')}
                 </label>
                 <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
                   {facilityOptions.map((facility) => (
@@ -320,13 +321,13 @@ const AddListingPage = () => {
           {/* Step 3: Images & Description */}
           {currentStep === 3 && (
             <div className="space-y-6">
-              <h2 className="font-display font-semibold text-xl text-gray-900 mb-6">
-                Images & Description
+<h2 className="font-display font-semibold text-xl text-gray-900 mb-6">
+                {t('addListing.step3')}
               </h2>
 
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">
-                  Property Images <span className="text-red-500">*</span>
+<label className="block text-sm font-medium text-gray-700 mb-2">
+                  {t('addListing.propertyImages')} <span className="text-red-500">*</span>
                 </label>
                 <div className="border-2 border-dashed border-gray-300 rounded-lg p-6 text-center">
                   <input
@@ -339,8 +340,8 @@ const AddListingPage = () => {
                   />
                   <label htmlFor="image-upload" className="cursor-pointer">
                     <ApperIcon name="Upload" size={32} className="text-gray-400 mx-auto mb-2" />
-                    <p className="text-gray-600">Click to upload images or drag and drop</p>
-                    <p className="text-sm text-gray-500 mt-1">PNG, JPG up to 10MB each</p>
+<p className="text-gray-600">{t('addListing.clickToUpload')}</p>
+                    <p className="text-sm text-gray-500 mt-1">{t('addListing.imageFormats')}</p>
                   </label>
                 </div>
 
@@ -366,15 +367,15 @@ const AddListingPage = () => {
               </div>
 
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">
-                  Property Description <span className="text-red-500">*</span>
+<label className="block text-sm font-medium text-gray-700 mb-2">
+                  {t('forms.propertyDescription')} <span className="text-red-500">*</span>
                 </label>
                 <textarea
                   value={formData.description}
                   onChange={(e) => handleInputChange('description', e.target.value)}
                   rows={6}
                   className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500"
-                  placeholder="Describe your property in detail..."
+placeholder={t('addListing.propertyDescriptionPlaceholder')}
                   required
                 />
               </div>
@@ -384,22 +385,22 @@ const AddListingPage = () => {
           {/* Step 4: Contact Information */}
           {currentStep === 4 && (
             <div className="space-y-6">
-              <h2 className="font-display font-semibold text-xl text-gray-900 mb-6">
-                Contact Information
+<h2 className="font-display font-semibold text-xl text-gray-900 mb-6">
+                {t('forms.contactInformation')}
               </h2>
 
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <Input
-                  label="Full Name"
-                  placeholder="e.g., Ahmed Ali"
+<Input
+                  label={t('forms.fullName')}
+                  placeholder={t('addListing.fullNamePlaceholder')}
                   value={formData.contactName}
                   onChange={(e) => handleInputChange('contactName', e.target.value)}
                   required
                 />
 
-                <Input
-                  label="Phone Number"
-                  placeholder="e.g., +92 300 1234567"
+<Input
+                  label={t('forms.phoneNumber')}
+                  placeholder={t('addListing.phoneNumberPlaceholder')}
                   value={formData.contactPhone}
                   onChange={(e) => handleInputChange('contactPhone', e.target.value)}
                   required
@@ -407,17 +408,17 @@ const AddListingPage = () => {
               </div>
 
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <Input
-                  label="WhatsApp Number"
-                  placeholder="e.g., +92 300 1234567"
+<Input
+                  label={t('forms.whatsappNumber')}
+                  placeholder={t('addListing.whatsappNumberPlaceholder')}
                   value={formData.contactWhatsApp}
                   onChange={(e) => handleInputChange('contactWhatsApp', e.target.value)}
                 />
 
-                <Input
-                  label="Email Address"
+<Input
+                  label={t('forms.email')}
                   type="email"
-                  placeholder="e.g., ahmed@example.com"
+                  placeholder={t('addListing.emailPlaceholder')}
                   value={formData.contactEmail}
                   onChange={(e) => handleInputChange('contactEmail', e.target.value)}
                 />
@@ -427,10 +428,9 @@ const AddListingPage = () => {
                 <div className="flex items-start">
                   <ApperIcon name="Info" size={20} className="text-blue-500 mt-1 mr-2" />
                   <div>
-                    <h3 className="font-medium text-blue-900">Important Note</h3>
+<h3 className="font-medium text-blue-900">{t('addListing.importantNote')}</h3>
                     <p className="text-sm text-blue-700 mt-1">
-                      Your contact information will be visible to potential tenants. 
-                      Make sure all details are accurate and up-to-date.
+                      {t('addListing.contactVisibilityNote')}
                     </p>
                   </div>
                 </div>
@@ -446,16 +446,16 @@ const AddListingPage = () => {
               disabled={currentStep === 1}
               className="flex items-center gap-2"
             >
-              <ApperIcon name="ChevronLeft" size={16} />
-              Previous
+<ApperIcon name="ChevronLeft" size={16} />
+              {t('common.previous')}
             </Button>
 
             {currentStep < 4 ? (
               <Button
                 onClick={nextStep}
                 className="flex items-center gap-2"
-              >
-                Next
+>
+                {t('common.next')}
                 <ApperIcon name="ChevronRight" size={16} />
               </Button>
             ) : (
@@ -464,8 +464,8 @@ const AddListingPage = () => {
                 variant="accent"
                 className="flex items-center gap-2"
               >
-                <ApperIcon name="Check" size={16} />
-                Submit Listing
+<ApperIcon name="Check" size={16} />
+                {t('addListing.submitListing')}
               </Button>
             )}
           </div>

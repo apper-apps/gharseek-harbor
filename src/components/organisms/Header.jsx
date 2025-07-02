@@ -4,17 +4,18 @@ import { motion, AnimatePresence } from 'framer-motion'
 import ApperIcon from '@/components/ApperIcon'
 import Button from '@/components/atoms/Button'
 import LanguageSwitcher from '@/components/molecules/LanguageSwitcher'
-
+import { useLanguage } from '@/hooks/useLanguage'
 const Header = () => {
+  const { t } = useLanguage()
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const location = useLocation()
 
   const navigation = [
-    { name: 'Home', href: '/', icon: 'Home' },
-    { name: 'Browse Properties', href: '/properties', icon: 'Search' },
-    { name: 'Add Listing', href: '/add-listing', icon: 'Plus' },
-    { name: 'Blog', href: '/blog', icon: 'BookOpen' },
-    { name: 'Contact', href: '/contact', icon: 'MessageSquare' }
+    { nameKey: 'nav.home', href: '/', icon: 'Home' },
+    { nameKey: 'nav.browseProperties', href: '/properties', icon: 'Search' },
+    { nameKey: 'nav.addListing', href: '/add-listing', icon: 'Plus' },
+    { nameKey: 'nav.blog', href: '/blog', icon: 'BookOpen' },
+    { nameKey: 'nav.contact', href: '/contact', icon: 'MessageSquare' }
   ]
 
   const isActive = (path) => location.pathname === path
@@ -28,17 +29,17 @@ const Header = () => {
             <div className="w-10 h-10 bg-gradient-to-br from-primary-500 to-secondary-500 rounded-lg flex items-center justify-center">
               <ApperIcon name="Home" size={24} className="text-white" />
             </div>
-            <div className="flex flex-col">
+<div className="flex flex-col">
               <span className="font-display font-bold text-xl text-gray-900">GharSeek</span>
-              <span className="text-xs text-gray-500 -mt-1">Find Your Perfect Rental</span>
+              <span className="text-xs text-gray-500 -mt-1">{t('footer.tagline')}</span>
             </div>
           </Link>
 
           {/* Desktop Navigation */}
           <nav className="hidden md:flex items-center space-x-8">
-            {navigation.map((item) => (
+{navigation.map((item) => (
               <Link
-                key={item.name}
+                key={item.nameKey}
                 to={item.href}
                 className={`relative flex items-center space-x-1 px-3 py-2 rounded-lg text-sm font-medium transition-all duration-200 ${
                   isActive(item.href)
@@ -47,7 +48,7 @@ const Header = () => {
                 }`}
               >
                 <ApperIcon name={item.icon} size={16} />
-                <span>{item.name}</span>
+                <span>{t(item.nameKey)}</span>
                 {isActive(item.href) && (
                   <motion.div
                     layoutId="activeTab"
@@ -64,9 +65,9 @@ const Header = () => {
           <div className="flex items-center space-x-4">
             <LanguageSwitcher className="hidden sm:block" />
             <Link to="/agent-login">
-              <Button variant="primary" size="sm" className="hidden sm:flex items-center space-x-2">
+<Button variant="primary" size="sm" className="hidden sm:flex items-center space-x-2">
                 <ApperIcon name="User" size={16} />
-                <span>Agent Login</span>
+                <span>{t('nav.agentLogin')}</span>
               </Button>
             </Link>
 
@@ -91,9 +92,9 @@ const Header = () => {
             className="md:hidden bg-white border-t border-gray-200"
           >
             <div className="px-4 py-2 space-y-1">
-              {navigation.map((item) => (
+{navigation.map((item) => (
                 <Link
-                  key={item.name}
+                  key={item.nameKey}
                   to={item.href}
                   onClick={() => setIsMenuOpen(false)}
                   className={`flex items-center space-x-3 px-3 py-3 rounded-lg text-sm font-medium transition-all duration-200 ${
@@ -103,15 +104,15 @@ const Header = () => {
                   }`}
                 >
                   <ApperIcon name={item.icon} size={18} />
-                  <span>{item.name}</span>
+                  <span>{t(item.nameKey)}</span>
                 </Link>
               ))}
               <div className="flex items-center justify-between pt-4 border-t border-gray-200">
                 <LanguageSwitcher />
                 <Link to="/agent-login" onClick={() => setIsMenuOpen(false)}>
-                  <Button variant="primary" size="sm" className="flex items-center space-x-2">
+<Button variant="primary" size="sm" className="flex items-center space-x-2">
                     <ApperIcon name="User" size={16} />
-                    <span>Agent Login</span>
+                    <span>{t('nav.agentLogin')}</span>
                   </Button>
                 </Link>
               </div>

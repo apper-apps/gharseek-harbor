@@ -1,0 +1,259 @@
+[
+  {
+    "Id": 1,
+    "title": "Luxurious 4 Bedroom House in DHA Phase 5 Lahore",
+    "type": "house",
+    "city": "lahore",
+    "area": "DHA Phase 5",
+    "price": 85000,
+    "bedrooms": 4,
+    "bathrooms": 3,
+    "areaSize": 12,
+    "areaUnit": "marla",
+    "furnished": true,
+    "images": [
+      "/api/placeholder/600/400",
+      "/api/placeholder/600/400",
+      "/api/placeholder/600/400",
+      "/api/placeholder/600/400"
+    ],
+    "description": "Beautiful 4 bedroom house located in the heart of DHA Phase 5. This property features modern architecture, spacious rooms, and premium finishes throughout. Perfect for families looking for a comfortable and luxurious living experience.",
+    "facilities": [
+      "Parking",
+      "Security",
+      "Garden",
+      "Generator",
+      "Water Supply",
+      "Gas Connection",
+      "Internet",
+      "Market Nearby",
+      "School Nearby"
+    ],
+    "location": {
+      "lat": 31.4688,
+      "lng": 74.4137
+    },
+    "agentId": "1",
+    "agent": {
+      "name": "Ahmed Hassan",
+      "phone": "+92 300 1234567",
+      "whatsapp": "+92 300 1234567",
+      "email": "ahmed@example.com",
+      "verified": true
+    },
+    "verified": true,
+    "featured": true
+  },
+  {
+    "Id": 2,
+    "title": "Modern 2 Bedroom Apartment in Gulberg Lahore",
+    "type": "apartment",
+    "city": "lahore",
+    "area": "Gulberg III",
+    "price": 45000,
+    "bedrooms": 2,
+    "bathrooms": 2,
+    "areaSize": 1200,
+    "areaUnit": "sqft",
+    "furnished": false,
+    "images": [
+      "/api/placeholder/600/400",
+      "/api/placeholder/600/400",
+      "/api/placeholder/600/400"
+    ],
+    "description": "Contemporary 2 bedroom apartment in prime Gulberg location. Features include modern kitchen, spacious living area, and excellent ventilation. Close to major shopping centers and restaurants.",
+    "facilities": [
+      "Lift",
+      "Security",
+      "Parking",
+      "Generator",
+      "Water Supply",
+      "Market Nearby"
+    ],
+    "location": {
+      "lat": 31.5204,
+      "lng": 74.3587
+    },
+    "agentId": "2",
+    "agent": {
+      "name": "Fatima Khan",
+      "phone": "+92 301 2345678",
+      "whatsapp": "+92 301 2345678",
+      "email": "fatima@example.com",
+      "verified": true
+    },
+    "verified": true,
+    "featured": true
+  },
+  {
+    "Id": 3,
+    "title": "Spacious 3 Bedroom Flat in Clifton Karachi",
+    "type": "flat",
+    "city": "karachi",
+    "area": "Clifton Block 2",
+    "price": 75000,
+    "bedrooms": 3,
+    "bathrooms": 2,
+    "areaSize": 1800,
+    "areaUnit": "sqft",
+    "furnished": true,
+    "images": [
+      "/api/placeholder/600/400",
+      "/api/placeholder/600/400",
+      "/api/placeholder/600/400",
+      "/api/placeholder/600/400"
+    ],
+    "description": "Elegant 3 bedroom flat with sea view in prestigious Clifton area. Fully furnished with high-quality furniture and appliances. Walking distance to beach and major amenities.",
+    "facilities": [
+      "Sea View",
+      "Lift",
+      "Security",
+      "Parking",
+      "Generator",
+      "Water Supply",
+      "Gas Connection",
+      "Gym",
+      "Swimming Pool"
+    ],
+    "location": {
+      "lat": 24.8138,
+      "lng": 67.0296
+    },
+    "agentId": "3",
+    "agent": {
+      "name": "Ali Raza",
+      "phone": "+92 302 3456789",
+      "whatsapp": "+92 302 3456789",
+      "email": "ali@example.com",
+      "verified": true
+    },
+    "verified": true,
+    "featured": true
+  },
+  {
+    "Id": 4,
+    "title": "Commercial Office Space in Blue Area Islamabad",
+    "type": "office",
+    "city": "islamabad",
+    "area": "Blue Area",
+    "price": 120000,
+    "bedrooms": 0,
+    "bathrooms": 2,
+    "areaSize": 2500,
+    "areaUnit": "sqft",
+    "furnished": false,
+    "images": [
+      "/api/placeholder/600/400",
+      "/api/placeholder/600/400",
+      "/api/placeholder/600/400"
+    ],
+    "description": "Prime commercial office space in the heart of Blue Area. Perfect for corporate offices, with modern facilities and excellent connectivity. Multiple parking spaces available.",
+    "facilities": [
+      "Lift",
+      "Security",
+      "Parking",
+      "Generator",
+      "Water Supply",
+      "Internet",
+      "Air Conditioning",
+      "Conference Room"
+    ],
+    "location": {
+      "lat": 33.7077,
+      "lng": 73.0563
+    },
+    "agentId": "1",
+    "agent": {
+      "name": "Ahmed Hassan",
+      "phone": "+92 300 1234567",
+      "whatsapp": "+92 300 1234567",
+      "email": "ahmed@example.com",
+      "verified": true
+    },
+    "verified": true,
+    "featured": false
+  },
+  {
+    "Id": 5,
+    "title": "Residential Plot in Wapda Town Lahore",
+    "type": "plot",
+    "city": "lahore",
+    "area": "Wapda Town Block K",
+    "price": 35000,
+    "bedrooms": 0,
+    "bathrooms": 0,
+    "areaSize": 5,
+    "areaUnit": "marla",
+    "furnished": false,
+    "images": [
+      "/api/placeholder/600/400",
+      "/api/placeholder/600/400"
+    ],
+    "description": "5 marla residential plot in developed area of Wapda Town. All utilities available including electricity, gas, and water connections. Ideal for building your dream home.",
+    "facilities": [
+      "Electricity",
+      "Gas Connection",
+      "Water Supply",
+      "Sewerage",
+      "Wide Roads",
+      "Park Nearby",
+      "School Nearby"
+    ],
+    "location": {
+      "lat": 31.4153,
+      "lng": 74.2722
+    },
+    "agentId": "4",
+    "agent": {
+      "name": "Muhammad Usman",
+      "phone": "+92 303 4567890",
+      "whatsapp": "+92 303 4567890",
+      "email": "usman@example.com",
+      "verified": false
+    },
+    "verified": false,
+    "featured": false
+  },
+  {
+    "Id": 6,
+    "title": "Cozy 1 Bedroom Studio in F-11 Islamabad",
+    "type": "apartment",
+    "city": "islamabad",
+    "area": "F-11/3",
+    "price": 28000,
+    "bedrooms": 1,
+    "bathrooms": 1,
+    "areaSize": 600,
+    "areaUnit": "sqft",
+    "furnished": true,
+    "images": [
+      "/api/placeholder/600/400",
+      "/api/placeholder/600/400",
+      "/api/placeholder/600/400"
+    ],
+    "description": "Compact and modern 1 bedroom studio apartment perfect for singles or young couples. Fully furnished with all necessary amenities. Great location with easy access to main city areas.",
+    "facilities": [
+      "Furnished",
+      "Lift",
+      "Security",
+      "Parking",
+      "Water Supply",
+      "Generator",
+      "Market Nearby"
+    ],
+    "location": {
+      "lat": 33.6844,
+      "lng": 73.0479
+    },
+    "agentId": "2",
+    "agent": {
+      "name": "Fatima Khan",
+      "phone": "+92 301 2345678",
+      "whatsapp": "+92 301 2345678",
+      "email": "fatima@example.com",
+      "verified": true
+    },
+    "verified": true,
+    "featured": false
+  }
+]

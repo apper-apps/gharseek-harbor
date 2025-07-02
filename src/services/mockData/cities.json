@@ -1,0 +1,58 @@
+[
+  {
+    "Id": 1,
+    "name": "Lahore",
+    "properties": 1250,
+    "startingPrice": "PKR 25,000",
+    "image": "/api/placeholder/300/200"
+  },
+  {
+    "Id": 2,
+    "name": "Karachi",
+    "properties": 980,
+    "startingPrice": "PKR 30,000",
+    "image": "/api/placeholder/300/200"
+  },
+  {
+    "Id": 3,
+    "name": "Islamabad",
+    "properties": 750,
+    "startingPrice": "PKR 35,000",
+    "image": "/api/placeholder/300/200"
+  },
+  {
+    "Id": 4,
+    "name": "Multan",
+    "properties": 420,
+    "startingPrice": "PKR 20,000",
+    "image": "/api/placeholder/300/200"
+  },
+  {
+    "Id": 5,
+    "name": "Faisalabad",
+    "properties": 380,
+    "startingPrice": "PKR 18,000",
+    "image": "/api/placeholder/300/200"
+  },
+  {
+    "Id": 6,
+    "name": "Rawalpindi",
+    "properties": 320,
+    "startingPrice": "PKR 22,000",
+    "image": "/api/placeholder/300/200"
+  },
+  {
+    "Id": 7,
+    "name": "Peshawar",
+    "properties": 280,
+    "startingPrice": "PKR 15,000",
+    "image": "/api/placeholder/300/200"
+  },
+  {
+    "Id": 8,
+    "name": "Quetta",
+    "properties": 150,
+    "startingPrice": "PKR 12,000",
+    "image": "/api/placeholder/300/200"
+  }
+]

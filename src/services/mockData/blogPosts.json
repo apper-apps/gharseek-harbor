@@ -1,0 +1,68 @@
+[
+  {
+    "Id": 1,
+    "title": "10 Essential Tips for First-Time Property Renters in Pakistan",
+    "category": "tips",
+    "excerpt": "Navigate the Pakistani rental market with confidence using these expert tips for finding, evaluating, and securing your perfect rental property.",
+    "content": "Detailed guide content here...",
+    "author": "Sarah Ahmed",
+    "publishDate": "2024-01-15",
+    "readTime": 8,
+    "image": "/api/placeholder/400/250"
+  },
+  {
+    "Id": 2,
+    "title": "Understanding Rental Laws and Tenant Rights in Pakistan",
+    "category": "laws",
+    "excerpt": "Learn about your rights as a tenant and the legal framework governing rental agreements in Pakistan's major cities.",
+    "content": "Detailed legal guide content here...",
+    "author": "Advocate Ali Khan",
+    "publishDate": "2024-01-12",
+    "readTime": 12,
+    "image": "/api/placeholder/400/250"
+  },
+  {
+    "Id": 3,
+    "title": "DHA Lahore vs Gulberg: Which Area is Right for You?",
+    "category": "reviews",
+    "excerpt": "A comprehensive comparison of two of Lahore's most popular residential areas, covering lifestyle, amenities, and rental prices.",
+    "content": "Detailed area comparison content here...",
+    "author": "Fatima Hassan",
+    "publishDate": "2024-01-10",
+    "readTime": 10,
+    "image": "/api/placeholder/400/250"
+  },
+  {
+    "Id": 4,
+    "title": "Complete Moving Guide: Relocating Within Pakistan",
+    "category": "guides",
+    "excerpt": "Step-by-step guide to make your move stress-free, from planning and packing to settling into your new home.",
+    "content": "Detailed moving guide content here...",
+    "author": "Ahmed Malik",
+    "publishDate": "2024-01-08",
+    "readTime": 15,
+    "image": "/api/placeholder/400/250"
+  },
+  {
+    "Id": 5,
+    "title": "Pakistan Real Estate Market Trends 2024",
+    "category": "market",
+    "excerpt": "Analyze current market trends, pricing patterns, and investment opportunities in Pakistan's major real estate markets.",
+    "content": "Detailed market analysis content here...",
+    "author": "Dr. Usman Tariq",
+    "publishDate": "2024-01-05",
+    "readTime": 14,
+    "image": "/api/placeholder/400/250"
+  },
+  {
+    "Id": 6,
+    "title": "How to Spot Red Flags When Viewing Rental Properties",
+    "category": "tips",
+    "excerpt": "Learn to identify potential issues and warning signs during property viewings to avoid rental nightmares.",
+    "content": "Detailed red flags guide content here...",
+    "author": "Zainab Sheikh",
+    "publishDate": "2024-01-03",
+    "readTime": 7,
+    "image": "/api/placeholder/400/250"
+  }
+]

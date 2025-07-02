@@ -1,0 +1,101 @@
+@import 'react-toastify/dist/ReactToastify.css';
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    font-family: 'Inter', sans-serif;
+    @apply text-gray-900 bg-white;
+  }
+  
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+  }
+}
+
+@layer components {
+  .btn-primary {
+    @apply bg-primary-500 hover:bg-primary-600 text-white px-6 py-3 rounded-lg font-medium transition-all duration-200 transform hover:scale-105 shadow-lg hover:shadow-xl;
+  }
+  
+  .btn-accent {
+    @apply bg-accent-500 hover:bg-accent-600 text-white px-6 py-3 rounded-lg font-medium transition-all duration-200 transform hover:scale-105 shadow-lg hover:shadow-xl;
+  }
+  
+  .btn-secondary {
+    @apply bg-secondary-500 hover:bg-secondary-600 text-white px-6 py-3 rounded-lg font-medium transition-all duration-200 transform hover:scale-105 shadow-lg hover:shadow-xl;
+  }
+  
+  .card {
+    @apply bg-white rounded-xl shadow-card hover:shadow-card-hover transition-all duration-300 transform hover:scale-102 border border-gray-100;
+  }
+  
+  .property-card {
+    @apply card overflow-hidden hover:shadow-feature transition-all duration-300;
+  }
+  
+  .input-field {
+    @apply w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500 transition-all duration-200 text-gray-900 placeholder-gray-500;
+  }
+  
+  .search-filter {
+    @apply bg-white border border-gray-200 rounded-lg px-4 py-2 hover:border-primary-300 focus:border-primary-500 focus:ring-2 focus:ring-primary-200 transition-all duration-200;
+  }
+}
+
+/* Toast Notifications */
+.Toastify__toast-container {
+  @apply !top-4 !right-4 !w-auto !max-w-sm;
+}
+
+.Toastify__toast {
+  @apply !bg-white !text-gray-900 !rounded-lg !shadow-xl !border !border-gray-200 !font-body !text-sm !p-4;
+  min-height: auto !important;
+}
+
+.Toastify__toast--success {
+  @apply !border-green-200;
+}
+
+.Toastify__toast--error {
+  @apply !border-red-200;
+}
+
+.Toastify__toast--warning {
+  @apply !border-yellow-200;
+}
+
+.Toastify__toast--info {
+  @apply !border-blue-200;
+}
+
+.Toastify__progress-bar {
+  @apply !bg-primary-500;
+}
+
+/* RTL Support */
+[dir="rtl"] {
+  text-align: right;
+}
+
+[dir="rtl"] .card {
+  direction: rtl;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  @apply bg-gray-100;
+}
+
+::-webkit-scrollbar-thumb {
+  @apply bg-primary-300 rounded-full;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  @apply bg-primary-400;
+}
